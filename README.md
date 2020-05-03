@@ -23,6 +23,17 @@ DISABLED_PLUGINS='akismet/akismet.php, hello-dolly/hello-dolly.php'
 ENABLED_PLUGINS='disable-emails/disable-emails.php'
 ```
 
+Add the following lines to config/application.php:
+
+```PHP
+if ( env('ENABLED_PLUGINS') ) {
+    Config::define( 'ENABLED_PLUGINS', explode(',', env('ENABLED_PLUGINS')) );
+}
+if ( env('DISABLED_PLUGINS') ) {
+    Config::define( 'DISABLED_PLUGINS', explode(',', env('DISABLED_PLUGINS')) );
+}
+```
+
 Hooks
 ==========
 
