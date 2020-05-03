@@ -1,7 +1,7 @@
 # Configure Environment Plugins
 A WordPress MU plugin that allows plugins to be enabled or disabled based on current environment.
 
-It's created for sites built on [Bedrock](https://roots.io/bedrock) or any other Composer-based framework. It has no GUI and is configured purely by defining environment details. Listed plugins will be disabled or enabled for the network in a multi-site instance.
+It's created for sites built on [Bedrock](https://roots.io/bedrock) or any other Composer-based framework. It's configured purely by defining environment details, there's no GUI. Listed plugins will be disabled or enabled for the network in a multi-site instance.
 
 
 Installation
@@ -29,15 +29,31 @@ Hooks
 The plugin defines four actions you can hook into:
 
 ```PHP
-// Called after local plugins have been disabled
-add_action( 'environment_plugins_after_disabling_local_plugins', 'after_disabling_local_plugins' );
+/**
+ * Called after local plugins have been disabled
+ *
+ * @param string[] $disabled_plugins
+ */
+add_action( 'environment_plugins_after_disabling_local_plugins', function( $disabled_plugins ) { /* Do something */ } );
 
-// Called after local plugins have been enabled
-add_action( 'environment_plugins_after_enabling_local_plugins', 'after_enabling_local_plugins' );
+/**
+ * Called after local plugins have been enabled
+ *
+ * @param string[] $enabled_plugins
+ */
+add_action( 'environment_plugins_after_enabling_local_plugins', function( $enabled_plugins ) { /* Do something */ } );
 
-// Called after network plugins have been disabled
-add_action( 'environment_plugins_after_disabling_network_plugins', 'after_disabling_network_plugins' );
+/**
+ * Called after network plugins have been disabled
+ *
+ * @param string[] $disabled_plugins
+ */
+add_action( 'environment_plugins_after_disabling_network_plugins', function( $disabled_plugins ) { /* Do something */ } );
 
-// Called after network plugins have been enabled
-add_action( 'environment_plugins_after_enabling_network_plugins', 'after_enabling_network_plugins' );
+/**
+ * Called after network plugins have been enabled
+ *
+ * @param string[] $enabled_plugins
+ */
+add_action( 'environment_plugins_after_enabling_network_plugins', function( $enabled_plugins ) { /* Do something */ } );
 ```
