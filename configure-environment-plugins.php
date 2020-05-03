@@ -6,7 +6,7 @@
 * Author URI: https://ingenyus.com
 * Plugin URI: https://github.com/Genyus/Configure-Environment-Plugins
 * License: GPL version 2+
-* Version: 0.1
+* Version: 1.0.2
 */
 
 namespace Ingenyus\ConfigureEnvironmentPlugins;
