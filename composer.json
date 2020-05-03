@@ -1,0 +1,24 @@
+{
+	"name": "ingenyus/configure-environment-plugins",
+	"description": "WordPress MU plugin to enable or disable plugins in specific environments",
+	"homepage": "https://github.com/Genyus/Configure-Environment-Plugins",
+	"keywords": [
+		"wordpress"
+	],
+	"license": "GPL-2.0+",
+	"authors": [
+		{
+			"name":"Ingenyus Consulting Ltd",
+			"email":"mail@ingenyus.com",
+			"homepage":"https://ingenyus.com/"
+		}
+	],
+	"support"    : {
+			"issues": "https://github.com/Genyus/Configure-Environment-Plugins/issues",
+			"source": "https://github.com/Genyus/Configure-Environment-Plugins"
+	},
+	"type": "wordpress-muplugin",
+	"require": {
+		"composer/installers": "~1.0"
+	 }
+}
