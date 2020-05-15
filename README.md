@@ -1,4 +1,6 @@
 # Configure Environment Plugins
+[![Packagist](https://img.shields.io/packagist/v/ingenyus/configure-environment-plugins.svg?style=flat-square)](https://packagist.org/packages/ingenyus/configure-environment-plugins)
+
 A WordPress MU plugin that allows plugins to be enabled or disabled based on current environment.
 
 It's created for sites built on [Bedrock](https://roots.io/bedrock) or any other Composer-based framework. It's configured purely by defining environment details, there's no GUI. Listed plugins will be disabled or enabled for the network in a multi-site instance.
