@@ -2,6 +2,7 @@
 .vscode export-ignore
 
 // Files
+.gitattributes export-ignore
 .gitignore export-ignore
 composer.lock export-ignore
 LICENSE export-ignore
