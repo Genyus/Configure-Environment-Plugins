@@ -230,8 +230,8 @@ class PluginManager {
 
 			foreach ( (array) $this->enabled_plugins as $plugin ) {
 
-				if ( ! in_array( $plugin, $plugins, true ) ) {
-					$plugins[]            = $plugin;
+				if ( ! array_key_exists( $plugin, $plugins ) ) {
+					$plugins[ $plugin ]   = time();
 					$configured_plugins[] = $plugin;
 				}
 			}
