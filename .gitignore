@@ -3,3 +3,6 @@ vendor
 !vendor/.gitkeep
 
 .DS_Store
+
+# PHP_CodeSniffer
+.phpcs.cache

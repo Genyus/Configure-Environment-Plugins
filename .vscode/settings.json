@@ -2,8 +2,7 @@
     "[php]": {
         "editor.defaultFormatter": "wongjn.php-sniffer"
     },
-    "phpSniffer.autoDetect": true,
-    "phpSniffer.standard": "WordPress",
+	"phpSniffer.autoDetect": true,
     "editor.formatOnType": true,
     "editor.insertSpaces": false,
     "editor.detectIndentation": false

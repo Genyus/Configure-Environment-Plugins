@@ -28,14 +28,14 @@ class PluginManager {
 	 *
 	 * @var $disabled_plugins
 	 */
-	protected $disabled_plugins = array();
+	protected $disabled_plugins = [];
 
 	/**
 	 * An array of enabled plugins
 	 *
 	 * @var $enabled_plugins
 	 */
-	protected $enabled_plugins = array();
+	protected $enabled_plugins = [];
 
 	/**
 	 * Sets up the options filter, and optionally handles an array of plugins to enable and disable
@@ -56,32 +56,19 @@ class PluginManager {
 
 		if ( ! $this->is_mu_plugin() ) {
 			if ( is_admin() ) {
-				add_action( 'admin_notices', array( $this, 'admin_notice_not_mu_plugin' ) );
+				add_action( 'admin_notices', [ $this, 'admin_notice_not_mu_plugin' ] );
 			}
 
 			return;
 		}
 
-		/**
-		 * Handle what was passed in
-		 */
-		if ( is_array( $to_enable ) ) {
-			foreach ( $to_enable as $plugin ) {
-				$this->enable( $plugin );
-			}
-		}
-
-		if ( is_array( $to_disable ) ) {
-			foreach ( $to_disable as $plugin ) {
-				$this->disable( $plugin );
-			}
-		}
+		$this->process_plugins( $to_enable, $to_disable );
 
 		/**
 		 * Add the filters
 		 */
-		add_filter( 'option_active_plugins', array( $this, 'configure_local_plugins' ) );
-		add_filter( 'site_option_active_sitewide_plugins', array( $this, 'configure_network_plugins' ) );
+		add_filter( 'option_active_plugins', [ $this, 'configure_local_plugins' ] );
+		add_filter( 'site_option_active_sitewide_plugins', [ $this, 'configure_network_plugins' ] );
 	}
 
 	/**
@@ -139,6 +126,29 @@ class PluginManager {
 	}
 
 	/**
+	 * Processes an array of plugins to enable and disable
+	 *
+	 * @param array $to_enable Optional array of plugin filenames to enable.
+	 * @param array $to_disable Optional array of plugin filenames to disable.
+	 */
+	protected function process_plugins( array $to_enable, array $to_disable ) {
+		/**
+		 * Handle what was passed in
+		 */
+		if ( is_array( $to_enable ) ) {
+			foreach ( $to_enable as $plugin ) {
+				$this->enable( $plugin );
+			}
+		}
+
+		if ( is_array( $to_disable ) ) {
+			foreach ( $to_disable as $plugin ) {
+				$this->disable( $plugin );
+			}
+		}
+	}
+
+	/**
 	 * Checks the plugin is installed as a must-use plugin.
 	 */
 	protected function is_mu_plugin() {
@@ -153,7 +163,7 @@ class PluginManager {
 	protected function disable_local_plugins( $plugins ) {
 		if ( count( $this->disabled_plugins ) ) {
 
-			$configured_plugins = array();
+			$configured_plugins = [];
 
 			foreach ( (array) $this->disabled_plugins as $plugin ) {
 				$key = array_search( $plugin, $plugins, true );
@@ -178,12 +188,12 @@ class PluginManager {
 	protected function enable_local_plugins( $plugins ) {
 		if ( count( $this->enabled_plugins ) ) {
 
-			$configured_plugins = array();
+			$configured_plugins = [];
 
 			foreach ( (array) $this->enabled_plugins as $plugin ) {
 
 				if ( ! in_array( $plugin, $plugins, true ) ) {
-					$plugins[]            = $plugin;
+					$plugins[ $plugin ]   = time();
 					$configured_plugins[] = $plugin;
 				}
 			}
@@ -202,7 +212,7 @@ class PluginManager {
 	protected function disable_network_plugins( $plugins ) {
 		if ( count( $this->disabled_plugins ) ) {
 
-			$configured_plugins = array();
+			$configured_plugins = [];
 
 			foreach ( (array) $this->disabled_plugins as $plugin ) {
 
@@ -226,7 +236,7 @@ class PluginManager {
 	protected function enable_network_plugins( $plugins ) {
 		if ( count( $this->enabled_plugins ) ) {
 
-			$configured_plugins = array();
+			$configured_plugins = [];
 
 			foreach ( (array) $this->enabled_plugins as $plugin ) {
 
