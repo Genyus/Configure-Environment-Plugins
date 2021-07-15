@@ -161,7 +161,7 @@ class PluginManager {
 	 * @param array $plugins An array of plugins to disable.
 	 */
 	protected function disable_local_plugins( $plugins ) {
-		if ( count( $this->disabled_plugins ) ) {
+		if ( count( (array) $this->disabled_plugins ) ) {
 
 			$configured_plugins = [];
 
@@ -186,7 +186,7 @@ class PluginManager {
 	 * @param array $plugins An array of plugins to enable.
 	 */
 	protected function enable_local_plugins( $plugins ) {
-		if ( count( $this->enabled_plugins ) ) {
+		if ( count( (array) $this->enabled_plugins ) ) {
 
 			$configured_plugins = [];
 
@@ -210,7 +210,7 @@ class PluginManager {
 	 * @param array $plugins An array of plugins to disable.
 	 */
 	protected function disable_network_plugins( $plugins ) {
-		if ( count( $this->disabled_plugins ) ) {
+		if ( count( (array) $this->disabled_plugins ) ) {
 
 			$configured_plugins = [];
 
@@ -234,7 +234,7 @@ class PluginManager {
 	 * @param array $plugins An array of plugins to enable.
 	 */
 	protected function enable_network_plugins( $plugins ) {
-		if ( count( $this->enabled_plugins ) ) {
+		if ( count( (array) $this->enabled_plugins ) ) {
 
 			$configured_plugins = [];
 
