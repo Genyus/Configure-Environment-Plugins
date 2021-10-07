@@ -62,6 +62,14 @@ class PluginManager {
 			return;
 		}
 
+		if ( ! $to_enable ) {
+			$to_enable = array();
+		}
+
+		if ( ! $to_disable ) {
+			$to_disable = array();
+		}
+
 		$this->process_plugins( $to_enable, $to_disable );
 
 		/**
