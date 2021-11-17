@@ -1,0 +1,18 @@
+version: 2
+updates:
+- package-ecosystem: composer
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: squizlabs/php_codesniffer
+    versions:
+    - 3.5.8
+    - 3.6.0
+  - dependency-name: composer/installers
+    versions:
+    - 1.10.0
+  - dependency-name: dealerdirect/phpcodesniffer-composer-installer
+    versions:
+    - 0.7.1
