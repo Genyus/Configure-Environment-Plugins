@@ -13,6 +13,10 @@
 
 namespace Ingenyus\ConfigureEnvironmentPlugins;
 
+if ( ! defined( 'ABSPATH' ) ) { // If this file is called directly.
+	die( 'No script kiddies please!' );
+}
+
 require_once 'includes/class-pluginmanager.php';
 
 $plugins_to_enable  = null;

@@ -43,7 +43,7 @@ class PluginManager {
 	 * @param array $to_enable Optional array of plugin filenames to enable.
 	 * @param array $to_disable Optional array of plugin filenames to disable.
 	 */
-	public function __construct( array $to_enable = null, array $to_disable = null ) {
+	public function __construct( array $to_enable = [], array $to_disable = [] ) {
 
 		if ( isset( self::$instance ) ) {
 			return;
@@ -62,21 +62,16 @@ class PluginManager {
 			return;
 		}
 
-		if ( ! $to_enable ) {
-			$to_enable = array();
-		}
-
-		if ( ! $to_disable ) {
-			$to_disable = array();
-		}
-
 		$this->process_plugins( $to_enable, $to_disable );
 
 		/**
 		 * Add the filters
 		 */
 		add_filter( 'option_active_plugins', [ $this, 'configure_local_plugins' ] );
-		add_filter( 'site_option_active_sitewide_plugins', [ $this, 'configure_network_plugins' ] );
+
+		if ( is_multisite() ) {
+			add_filter( 'site_option_active_sitewide_plugins', [ $this, 'configure_network_plugins' ] );
+		}
 	}
 
 	/**
